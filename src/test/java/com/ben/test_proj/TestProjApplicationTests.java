@@ -35,6 +35,15 @@ public class TestProjApplicationTests {
     public void checkPhoneNumberValidation() {
         String phoneNumber = "+97524233662";
         Assert.assertTrue(validationService.validatePhoneNumber(phoneNumber));
+
+        phoneNumber = "545445";
+        Assert.assertTrue(validationService.validatePhoneNumber(phoneNumber));
+
+        phoneNumber = "444afdsaf444";
+        Assert.assertFalse(validationService.validatePhoneNumber(phoneNumber));
+
+        phoneNumber = "555-555-555";
+        Assert.assertTrue(validationService.validatePhoneNumber(phoneNumber));
     }
 
 

@@ -28,10 +28,12 @@ public class TasksService implements ITasksService {
     private IBringgService bringgService;
 
     private ObjectMapper jsonMapper;
+
     @PostConstruct
-    public void init(){
+    public void init() {
         jsonMapper = new ObjectMapper();
     }
+
     public List<PrevWeekOrderResponse> handleLatestTasks(String customerPhone) throws JsonProcessingException {
         int pageNumber = 1;
         Task[] tasks = bringgService.getTasks(pageNumber);
@@ -46,7 +48,7 @@ public class TasksService implements ITasksService {
             orderResponseList.addAll(getPrevWeekOrderResponses(customerPhone, tasks));
         }
         log.info("We found the prevWeekOrder: {} in {} pages for customerPhone: {}",
-        jsonMapper.writeValueAsString(orderResponseList), pageNumber - 1, customerPhone);
+                jsonMapper.writeValueAsString(orderResponseList), pageNumber - 1, customerPhone);
 
         return orderResponseList;
     }

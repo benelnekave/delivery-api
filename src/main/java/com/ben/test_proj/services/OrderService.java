@@ -15,7 +15,6 @@ public class OrderService implements IOrderService {
     @Autowired
     private IBringgService bringgService;
 
-
     @Override
     public String sendOrder(CustomerOrder customerOrder) {
 
@@ -25,12 +24,10 @@ public class OrderService implements IOrderService {
         if (APIMessagesConstants.ERROR_IN_BRINGG_API_CALL.equals(customerId)) {
             return APIMessagesConstants.CUSTOMER_ORDER_ERROR;
         }
-        log.info("Customer was created in bringg. customer order: {} bringg customer id: {}", customerOrder, customerId);
         String taskCreateSuccess = bringgService.sendCreateTaskRequest(customerOrder, customerId);
         if (APIMessagesConstants.ERROR_IN_BRINGG_API_CALL.equals(taskCreateSuccess)) {
             return APIMessagesConstants.CUSTOMER_ORDER_ERROR;
         }
-        log.info("Task was created in bringg. order: {} bringg customer id: {}", customerOrder.getOrderDetails(), customerId);
 
         return APIMessagesConstants.CUSTOMER_ORDER_SUCCESS;
 

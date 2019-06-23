@@ -1,15 +1,13 @@
-package com.ben.test_proj.services;
+package com.ben.test_proj.util;
 
 import com.ben.test_proj.constants.APIMessagesConstants;
 import com.ben.test_proj.services.interfaces.IValidationService;
-import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
 public class ValidationService implements IValidationService {
-    private static Logger log = org.slf4j.LoggerFactory.getLogger(ValidationService.class);
 
     @Override
     public boolean isDateWithinLastWeek(String dateToValidate) {
